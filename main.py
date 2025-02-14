@@ -49,16 +49,10 @@ class Comesolo:
     def obtener_movimientos_validos(self, pos):
         #numero de niveles -2
         max_level = (len(self.tablero)//3) -2
+        #siguiente numero triangular de max_level
         max_value = (max_level * (max_level + 1) // 2)
-        print(max_value)
-
+        #valores desde o a max_value -1
         values = [x for x in range(0,max_value)]
-        # for i in range(level_max):  
-        #     inicio = i * (i + 1) // 2
-        #     fin = inicio + i + 1
-        #     for j in range(inicio,fin):
-        #         values.append(j)
-        print(values)
 
         if pos in values:
             print(pos)
