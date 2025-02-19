@@ -1,18 +1,21 @@
-
-
-import array
+import math
 
 
 class Comesolo:
     def __init__(self):
-        self.tablero = [1]*15
+        self.tablero = [1] * 15
         self.movimientos = {}
         self.jugando = True
+        self.niveles = self.calcular_niveles(len(self.tablero))
 
     def reiniciar_tablero(self):
         self.tablero = [1] * 15
         print("Tablero reiniciado.")
-    
+
+    @staticmethod
+    def calcular_niveles(L):
+        n = (-1 + math.sqrt(1 + 8 * L)) / 2
+        return int(n)
 
     def imprimir_tablero(self):
         for i in range(5):  # 5 niveles en el triángulo
@@ -20,7 +23,7 @@ class Comesolo:
             inicio = i * (i + 1) // 2
             fin = inicio + i + 1
 
-            fila = self.tablero[inicio:fin]  # Obtener la fila actual 
+            fila = self.tablero[inicio:fin]  # Obtener la fila actual
 
             # Preparar la fila para imprimir, coloreando los 0s
             fila_str = []
@@ -34,7 +37,6 @@ class Comesolo:
             espacios = "  " * (4 - i)  # Espacios para centrar la fila
             print(espacios + "   ".join(fila_str))
 
-    
     def primer_movimiento(self):
         # Verifica que las posiciones sean válidas
         while True:
@@ -46,47 +48,44 @@ class Comesolo:
             else:
                 print("Movimiento inválido. Debe ser un número entre 1 y 15.")
 
-    def obtener_movimientos_validos(self, pos):
-        #numero de niveles -2
-        max_level = (len(self.tablero)//3) -2
-        #siguiente numero triangular de max_level
-        max_value = (max_level * (max_level + 1) // 2)
-        #valores desde o a max_value -1
-        values = [x for x in range(0,max_value)]
+    # def obtener_movimientos_validos(self, pos):
+    #     # numero de niveles -2
+    #     max_level = (len(self.tablero) // 3) - 2
+    #     # siguiente numero triangular de max_level
+    #     max_value = max_level * (max_level + 1) // 2
+    #     # valores desde o a max_value -1
+    #     values = [x for x in range(0, max_value)]
 
-        if pos in values:
-            print(pos)
-        else:
-            print("numero no tien nieto izquierda")
-    
+    #     if pos in values:
+    #         print(pos)
+    #     else:
+    #         print("numero no tien nieto izquierda")
 
-        
-        # buscar_derecha
-        # buscar+horizontal
-        pass
+    #     # buscar_derecha
+    #     # buscar+horizontal
+    #     pass
+    def busca_hijo_izquierda(self):
+        max_level = self.niveles - 2
+        max_value = max_level * (max_level + 1) // 2
+        for i in range(0, max_value):
+            print(s)
 
-        
-            
-    
+    def find_rules(self):
+        self.busca_hijo_izquierda()
+
     def jugar(self):
         print("¡Bienvenido al juego Come Solo!")
         print("Tablero inicial:")
         self.imprimir_tablero()
-        # Solicitar el movimiento inicial al jugador
-    
+        print(self.niveles)
         self.primer_movimiento()
-        
+        self.find_rules()
 
 
 if __name__ == "__main__":
-
     # Jugar el juego
     juego = Comesolo()
-    juego.obtener_movimientos_validos(5)
-
-
-  
-    
+    juego.jugar()
 
 
 #             1                 1  0
@@ -94,7 +93,7 @@ if __name__ == "__main__":
 #         4   5   6             3  1 1
 #       7   8   9   10          4  1 1 1
 #     11  12  13  14  15        5  1 1 1 1
-#   16  17  18  19  20  21      6  
+#   16  17  18  19  20  21      6
 #  22 23  24  25  26  27  28    7
 
 # [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
