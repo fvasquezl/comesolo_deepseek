@@ -81,6 +81,7 @@ class Comesolo:
                     if(nieto==1):
                         print('nieto')
                         print(i,self.children(f_level+1, i*f_level),self.children(f_level+2, i*f_level)) 
+                        print("correcto")
 
 
 
@@ -92,6 +93,9 @@ class Comesolo:
         # Solicitar el movimiento inicial al jugador
         self.primer_movimiento()
         self.buscar_izquierda()
+        # while self.jugando:
+        #     # Imprimir el tablero actual
+
 
 
 if __name__ == "__main__":
